@@ -1,0 +1,25 @@
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class TimeConversion {
+    public static void main(String[] args) {
+        // Current time in the local time zone
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        // Convert to a specific time zone
+        String sourceTimeZone = "America/New_York";
+        String targetTimeZone = "Asia/Tokyo";
+
+        ZonedDateTime sourceZonedDateTime = localDateTime.atZone(ZoneId.of(sourceTimeZone));
+        ZonedDateTime targetZonedDateTime = sourceZonedDateTime.withZoneSameInstant(ZoneId.of(targetTimeZone));
+
+        // Format the converted time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String convertedTime = targetZonedDateTime.format(formatter);
+
+        // Print the converted time
+        System.out.println("Converted time: " + convertedTime);
+    }
+}
